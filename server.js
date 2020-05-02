@@ -1,10 +1,11 @@
 const express = require('express');
+
 const app = express();
 
-app.use(express.static(__dirname + '/dist/modol12-angular'));
+app.use(express.static('./dist/modol12-angular'));
 
-app.post('/*', function(req, res){
-  res.sendFile(__dirname +  '/dist/modol12-angular/index.html');
-});
-app.listen(4200);
+app.get('/*', (req, res) =>
+  res.sendFile('index.html', {root: 'dist/modol12-angular/'}),
+);
 
+app.listen(process.env.PORT || 8080);
